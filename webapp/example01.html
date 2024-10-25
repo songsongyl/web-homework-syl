@@ -1,11 +1,345 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Carousel Slider Bootstrap 5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .carousel-item {
+            height: 450px;
+            color: white;
+            position: relative;
+            /*border: 1px solid red;*/
+        }
+        #content-card{
+            margin-top: 30px;
+            display: flex;
+            gap: 10px;
+        }
+        .card-title{
+            color: coral;
+        }
+        #content-proverb{
+            display: flex;
+            gap: 25px;
+        }
+        .season {
+            border: 1px solid cadetblue;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+
+        }
+        .tooltip {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*background-color: rgba(0, 0, 0, 0.5); !* 半透明黑色遮罩 *!*/
+            color: aquamarine;
+            font-size: 24px;
+            opacity: 0; /* 初始不显示 */
+            transition: opacity 0.3s;
+        }
+        .season:hover .tooltip {
+            opacity: 1; /* 悬停时显示遮罩 */
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin: 10px auto;
+        }
+        .vote-button {
+            margin-right: 10px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .collect-form {
+            background-color: #f0f8ff; /* 淡蓝色背景 */
+            border: 1px solid #ccc; /* 边框 */
+            border-radius: 10px; /* 圆角 */
+            padding: 20px; /* 内边距 */
+            max-width: 400px; /* 最大宽度 */
+            margin:  auto; /* 居中 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+            text-align: center; /* 文本居中 */
+        }
+
+        .collect-form h3 {
+            color: #333; /* 标题颜色 */
+            margin-bottom: 15px; /* 标题底部间距 */
+        }
+
+        .collect-form input {
+            width: 80%; /* 输入框宽度 */
+            padding: 10px; /* 内边距 */
+            border: 1px solid #ccc; /* 边框 */
+            border-radius: 5px; /* 圆角 */
+            margin-bottom: 10px; /* 输入框底部间距 */
+            font-size: 16px; /* 字体大小 */
+        }
+
+        .collect-form button {
+            background-color: #4CAF50; /* 按钮背景色 */
+            color: white; /* 按钮文本颜色 */
+            border: none; /* 无边框 */
+            padding: 10px 20px; /* 内边距 */
+            border-radius: 5px; /* 圆角 */
+            cursor: pointer; /* 鼠标指针样式 */
+            font-size: 16px; /* 字体大小 */
+        }
+
+        .collect-form button:hover {
+            background-color: #45a049; /* 悬停时背景色 */
+        }
+
+    </style>
 </head>
 <body>
-    <h1>test</h1>
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel" >
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    </div>
+    <div class="carousel-inner" >
+        <div class="carousel-item active" >
+            <!--            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>-->
+            <img src="images/01.png" class="d-block h-100 w-100" alt="...">
+<!--            <div class="container">-->
+<!--                <div class="carousel-caption text-start">-->
+<!--                    &lt;!&ndash;                    <h1>Example headline.</h1>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <p>Some representative placeholder content for the first slide of the carousel.</p>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <img src="../../images/img1.jpg" alt="" width="800px" height="400px">&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+        <div class="carousel-item">
+            <!--            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>-->
+            <img src="images/02.png" class="d-block h-100 w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <!--            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>-->
+            <img src="images/03.png" class="d-block h-100 w-100" alt="...">
+
+        </div>
+        <div class="carousel-item">
+            <!--            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>-->
+            <img src="images/04.png" class="d-block h-100 w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<div id="content-card">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">小满</h5>
+            <p class="card-text">
+                小满是二十四节气中的第八个节气，通常在每年5月20日至22日之间。小满时节，农作物开始饱满，但尚未成熟，因此称为“小满”。此时，气温逐渐升高，降水量也增多，是农作物生长的关键时期。
+            </p>
+            <p class="card-text">
+                <strong>气候特点：</strong> 气温升高，降水增多。<br>
+                <strong>农事活动：</strong> 主要农作物进入生长旺季，农民开始进行田间管理。<br>
+                <strong>习俗活动：</strong> 祈求丰收、祭车神、吃苦菜等。
+            </p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#xiaoManModal">了解更多</button>
+        </div>
+    </div>
+    <div class="modal fade" id="xiaoManModal" tabindex="-1" aria-labelledby="xiaoManModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="xiaoManModalLabel">小满节气习俗</h5>
+                </div>
+                <div class="modal-body">
+                    <img src="images/05.png" class="img-fluid" style="margin-bottom: 10px">
+                <p>在一些地方，有关于小满的传说。相传古时有位农民在小满时节勤劳耕作，虽然辛苦，但他始终相信勤劳能换来丰收。
+                    最终，他的田地在小满时节迎来了丰硕的收成。这一故事传达了勤劳和希望的价值观，也让人们在小满这个节气中更加珍惜和努力。</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">雨水</h5>
+            <p class="card-text">
+                雨水是二十四节气中的第二个节气，通常在每年2月18日至20日之间。立夏标志着降雨的开始，气温逐渐升高。
+            </p>
+            <p class="card-text">
+                <strong>气候特点：</strong> 气温明显升高，降水增多。<br>
+                <strong>农事活动：</strong> ‌培土施肥‌，清沟排水。<br>
+                <strong>习俗活动：</strong> “拉保保”，回娘家等。
+            </p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#yuShuiModal">了解更多</button>
+        </div>
+    </div>
+    <div class="modal fade" id="yuShuiModal" tabindex="-1" aria-labelledby="yuShuiModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="yuShuiModalLabel">雨水节气习俗</h5>
+                </div>
+                <div class="modal-body">
+                    <img src="images/06.png" class="img-fluid" style="margin-bottom: 10px">
+                    <p>农民会进行祭祀，祈求丰收。常常会在这个时候祭拜土地神，以感谢土地的恩赐。</p>
+                    <p>随着春天的到来，很多家庭会进行大扫除，清理家中的尘埃，迎接新的气候和生机。</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">芒种</h5>
+            <p class="card-text">
+                芒种是二十四节气中的第九个节气，通常在每年6月5日至7日之间。芒种时节，麦类作物成熟，农民开始忙于收割和播种。
+            </p>
+            <p class="card-text">
+                <strong>气候特点：</strong> 气温持续升高，降水增多。<br>
+                <strong>农事活动：</strong> 收割小麦，播种夏播作物。<br>
+                <strong>习俗活动：</strong> 祭祀田祖、吃新麦等。
+            </p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mangZhongModal">了解更多</button>
+        </div>
+    </div>
+    <div class="modal fade" id="mangZhongModal" tabindex="-1" aria-labelledby="mangZhongModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mangZhongModalLabel">芒种节气习俗</h5>
+                </div>
+                <div class="modal-body">
+                    <img src="images/07.png" class="img-fluid" style="margin-bottom: 10px">
+                    <p>在芒种时节，很多地方有吃“芒种粽”的习惯，寓意着对丰收的期盼。此外，时令的水果和蔬菜，如黄瓜、西瓜等，成为人们餐桌上的常客。</p>
+                    <p>古代文人常常以芒种为题，写下描绘田园风光、农忙景象的诗词，表达对大自然的赞美和对农耕生活的热爱。</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">夏至</h5>
+            <p class="card-text">
+                夏至是二十四节气中的第十个节气，通常在每年6月21日至22日之间。夏至是一年中白天最长、夜晚最短的一天，标志着炎热夏季的正式开始。
+            </p>
+            <p class="card-text">
+                <strong>气候特点：</strong> 气温达到一年中的峰值，天气炎热。<br>
+                <strong>农事活动：</strong> 农作物生长旺盛，田间管理繁忙。<br>
+                <strong>习俗活动：</strong> 吃夏至面、喝夏至茶、祭神等。
+            </p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#xiaZhiModal">了解更多</button>
+        </div>
+    </div>
+    <div class="modal fade" id="xiaZhiModal" tabindex="-1" aria-labelledby="xiaZhiModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="xiaZhiModalLabel">夏至节气习俗</h5>
+                </div>
+                <div class="modal-body">
+                    <img src="images/08.png" class="img-fluid" style="margin-bottom: 10px">
+                    <p>在一些地区，夏至时节会举行祭祖和祭天的活动，以祈求平安和丰收。这些仪式通常包括供品、焚香和吟诵。</p>
+                    <p>夏至是阴阳转化的重要时刻，许多地方的人们会根据气候变化调整饮食和作息，注重养生，保持身体健康。</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h1>二十四节气谚语</h1>
+<div id="content-proverb">
+    <div class="season" id="jingzhe">
+        <p>
+            春雷响，万物长。
+        </p>
+        <span class="tooltip">惊蛰</span>
+        <button class="vote-button" onclick="vote('jingzhe')">投票</button>
+        <span id="jingzhe-votes">票数：0</span>
+    </div>
+
+    <div class="season" id="dashu">
+        <p>
+            大暑不冷，秋来可憎。
+        </p>
+        <span class="tooltip">大暑</span>
+        <button class="vote-button" onclick="vote('dashu')">投票</button>
+        <span id="dashu-votes">票数：0</span>
+    </div>
+
+    <div class="season" id="qiufen">
+        <p>
+            秋分晴，冬分寒。
+        </p>
+        <span class="tooltip">秋分</span>
+        <button class="vote-button" onclick="vote('qiufen')">投票</button>
+        <span id="qiufen-votes">票数：0</span>
+    </div>
+
+    <div class="season" id="shuangjiang">
+        <p>
+            霜降后，寒来早。
+        </p>
+        <span class="tooltip">霜降</span>
+        <button class="vote-button" onclick="vote('shuangjiang')">投票</button>
+        <span id="shuangjiang-votes">票数：0</span>
+    </div>
+
+
+    <div class="collect-form">
+        <h3>征集您的谚语</h3>
+        <input type="text" id="new-proverb" placeholder="请输入您的谚语">
+        <button onclick="collectProverb()">提交</button>
+    </div>
+</div>
+<script>
+    const votes = {
+        jingzhe: 0,
+        dashu: 0,
+        qiufen: 0,
+        shuangjiang: 0,
+    };
+
+    function vote(season) {
+        votes[season]++;
+        document.getElementById(`${season}-votes`).innerText = `票数：${votes[season]}`;
+    }
+
+    function collectProverb() {
+        const proverb = document.getElementById('new-proverb').value;
+        if (proverb) {
+            alert(`感谢您的提交：${proverb}`);
+            document.getElementById('new-proverb').value = ''; // 清空输入框
+        } else {
+            alert('请先输入谚语！');
+        }
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>
