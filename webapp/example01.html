@@ -19,9 +19,25 @@
         .card-title{
             color: coral;
         }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 让鼠标事件穿透到下面的内容 */
+        }
+
         #content-proverb{
             display: flex;
             gap: 25px;
+            position: relative;
+            z-index: 1; /* 确保内容在花瓣之上 */
+            padding: 20px;
+            background: white; /* 可以设置背景色 */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .season {
             border: 1px solid cadetblue;
@@ -36,7 +52,7 @@
             justify-content: center;
             align-items: center;
             /*background-color: rgba(0, 0, 0, 0.5); !* 半透明黑色遮罩 *!*/
-            color: aquamarine;
+            color: cadetblue;
             font-size: 24px;
             opacity: 0; /* 初始不显示 */
             transition: opacity 0.3s;
@@ -101,6 +117,7 @@
     </style>
 </head>
 <body>
+
 <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" >
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -271,6 +288,7 @@
     </div>
 </div>
 <h1>二十四节气谚语</h1>
+<canvas id="canvas"></canvas>
 <div id="content-proverb">
     <div class="season" id="jingzhe">
         <p>
@@ -315,6 +333,7 @@
         <button onclick="collectProverb()">提交</button>
     </div>
 </div>
+
 <script>
     const votes = {
         jingzhe: 0,
@@ -326,6 +345,7 @@
     function vote(season) {
         votes[season]++;
         document.getElementById(`${season}-votes`).innerText = `票数：${votes[season]}`;
+
     }
 
     function collectProverb() {
@@ -337,6 +357,62 @@
             alert('请先输入谚语！');
         }
     }
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const petals = [];
+    const colors = ['#FFB6C1', '#FF69B4', '#FF1493', '#DB7093']; // 花瓣颜色
+
+    class Petal {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height - canvas.height; // 从上方出现
+            this.size = Math.random() * 10 + 5; // 花瓣大小
+            this.speed = Math.random() * 2 + 1; // 下落速度
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        update() {
+            this.y += this.speed;
+            this.x += Math.sin(this.y * 0.05) * 2; // 模拟风吹动效果
+
+            // 如果花瓣落到画布底部，则重置到顶部
+            if (this.y > canvas.height) {
+                this.y = -this.size;
+                this.x = Math.random() * canvas.width;
+            }
+        }
+
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.ellipse(this.x, this.y, this.size, this.size / 2, Math.PI / 4, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    // 初始化花瓣
+    for (let i = 0; i < 50; i++) {
+        petals.push(new Petal());
+    }
+
+    // 动画循环
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        petals.forEach(petal => {
+            petal.update();
+            petal.draw();
+        });
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
