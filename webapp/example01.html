@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>Carousel Slider Bootstrap 5</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">-->
+    <!-- 引入字体 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap">
     <style>
         /*.carousel-item {*/
         /*    height: 450px;*/
@@ -14,40 +18,188 @@
         *{
             padding: 0;
             margin: 0;
+            box-sizing: border-box;
+
         }
-        .shell{
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+       .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
-            overflow-x: hidden;
-            perspective: 3px;
+            background-size: cover;
+            overflow: hidden;
+            transition: background-image .7s ease-in-out;
+           background-color: rgba(99,99,99,0.8);
+            width: 100%;
         }
-        .shell div{
+        /*.shell{*/
+        /*    height: 100vh;*/
+        /*    overflow-x: hidden;*/
+        /*    perspective: 3px;*/
+        /*}*/
+        /*.shell div{*/
+        /*    position: relative;*/
+        /*    display: flex;*/
+        /*    justify-content: center;*/
+        /*    align-items: center;*/
+        /*    font-size: 30px;*/
+        /*    letter-spacing: 2px;*/
+        /*}*/
+        /*.image{*/
+        /*    transform: translateZ(-1px) scale(1.6);*/
+        /*    background-size: cover;*/
+        /*    height: 100vh;*/
+        /*    z-index: -1;*/
+        /*}*/
+        /*.text{*/
+        /*    height: 14vh;*/
+        /*    background-color: #fff;*/
+        /*    border-radius: 10px;*/
+        /*}*/
+        /*.text h1{*/
+        /*    color: #000;*/
+        /*    font-size: 28px;*/
+        /*}*/
+        /*.heading{*/
+        /*    z-index: -1;*/
+        /*    transform: translateY(-30vh) translateZ(1px);*/
+        /*    color: #fff;*/
+        /*    font-size: 30px;*/
+        /*}*/
+
+
+        .shell {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 30px;
-            letter-spacing: 2px;
+            width: 100%;
+            height: 100%;
+
         }
-        .image{
-            transform: translateZ(-1px) scale(1.6);
-            background-size: cover;
-            height: 100vh;
-            z-index: -1;
+
+        .button{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 380px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            color: #cccccc;
         }
-        .text{
-            height: 14vh;
-            background-color: #fff;
-            border-radius: 10px;
+        .prev, .next{
+            transition: transform 0.25s ease;
+            z-index: 99999;
+            bottom: 5px;
+
         }
-        .text h1{
-            color: #000;
-            font-size: 28px;
-        }
-        .heading{
-            z-index: -1;
-            transform: translateY(-30vh) translateZ(1px);
+
+        .prev i,.next i{
+            font-size: 90px;
             color: #fff;
-            font-size: 30px;
+            cursor: pointer;
+            text-shadow: 0 0 10px #ffffff ;
+        }
+
+        .shell_body{
+            width: 100%;
+            padding: 20px 0 150px 0;
+        }
+        .shell_slider{
+            position: relative;
+            transition: tranform 1s ease-in-out;
+            background: transparent;
+        }
+
+        .item{
+            position: relative;
+            float: left;
+            margin: 0 20px ;
+         }
+        .frame{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: tranform 1s ease-in-out;
+            transform-style: preserve-3d;
+        }
+
+        .frame:after {
+            content: "";
+            position: absolute;
+            bottom: -16%;
+            width: 100%;
+            height: 60px;
+            background: #ffffff1c;
+            box-shadow: 0px 0px 15px 5px #ffffff1c;
+            transform: rotateX(90deg) translate3d(0px, -20px, 0px);
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid #fff;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .box h1,
+        .box span {
+            color: #fff;
+            transform: translateZ(20px);
+        }
+
+        .box h1 {
+            text-shadow: 0 0 30px #1f05b4;
+            font-size: 100px;
+        }
+
+        .box span {
+            position: absolute;
+            bottom: 20px;
+            padding: 0 25px;
+            text-shadow: 0 0 10px #1f05b4;
+        }
+
+        .front,
+        .left,
+        .right {
+            box-shadow: 0 0 50px #ffffff;
+            background-size: cover;
+        }
+
+        .right,
+        .left {
+            top: 0;
+            width: 60px;
+            backface-visibility: hidden;
+        }
+
+        .left {
+            left: 0;
+            border-left-width: 5px;
+            transform: translate3d(1px, 0, -60px) rotateY(-90deg);
+            transform-origin: 0%;
+        }
+
+        .right {
+            right: 0;
+            border-right-width: 5px;
+            transform: translate3d(-1px, 0, -60px) rotateY(90deg);
+            transform-origin: 100%;
         }
         #content-card{
             margin-top: 30px;
@@ -107,11 +259,42 @@
         .vote-button {
             margin-right: 10px;
             cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
+            background-color: #fff;
+            color: #66ddf7;
             border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
+            padding: 1vmin 2vmin;
+            border-radius: 2vmin ;
+            position: relative;
+            font-size: 2vmin;
+            overflow: hidden;
+            z-index: 10;
+        }
+        .vote-button::before{
+            content: '';
+            width: 200%;
+            height: 200%;
+            background-color: #22292f;
+            position: absolute;
+            left: -50%;
+            top: -50%;
+            background-image: conic-gradient(
+            transparent,#66ddf7,transparent 30%
+            );
+            z-index: -2;
+            animation: rotate 5s linear infinite;
+        }
+        @keyframes  rotate {
+            to{
+                transform: rotate(360deg);
+            }
+        }
+        .vote-button::after{
+            content: '';
+            position: absolute;
+            inset: 1vmin;
+            background-color: #000;
+            border-radius: 4vmin;
+            z-index: -1;
         }
         .collect-form {
             background-color: #f0f8ff; /* 淡蓝色背景 */
@@ -199,38 +382,154 @@
 <!--        <span class="visually-hidden">Next</span>-->
 <!--    </button>-->
 <!--</div>-->
+<!--<div class="shell">-->
+<!--    <div class="image" style="background-image: url('./images/01.png');"></div>-->
+<!--    <div class="heading">-->
+<!--        <h1>Beginning of Spring</h1>-->
+<!--    </div>-->
+<!--    <div class="text">-->
+<!--        <h1>春风飘然至，花红柳绿浓；立春节气到，祝您心情好；春日需勤奋，事业腾飞高。</h1>-->
+<!--    </div>-->
+<!--    <div class="image" style="background-image: url('./images/02.png');"></div>-->
+<!--    <div class="heading">-->
+<!--        <h1>Beginning of Summer</h1>-->
+<!--    </div>-->
+<!--    <div class="text">-->
+<!--        <h1>大地苍翠绿意浓浓，雷雨酣畅来去从容，骄阳如火情深义重，夏风如友温情相拥。</h1>-->
+<!--    </div>-->
+<!--    <div class="image" style="background-image: url('./images/03.png');"></div>-->
+<!--    <div class="heading">-->
+<!--        <h1>Beginning of Autumn</h1>-->
+<!--    </div>-->
+<!--    <div class="text">-->
+<!--        <h1>立秋之日，阳光温柔，微风不燥，一切恰到好处，宛如一幅精致的水墨画。</h1>-->
+<!--    </div>-->
+<!--    <div class="image" style="background-image: url('./images/04.png');"></div>-->
+<!--    <div class="heading">-->
+<!--        <h1>Beginning of Winter</h1>-->
+<!--    </div>-->
+<!--    <div class="text">-->
+<!--        <h1>季节悄悄更替，立冬翩翩而至，哪怕人生如戏，也要在这一刻中送出最真的问候，拂去寒风的凉意。</h1>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+<div class="container" >
 <div class="shell">
-    <div class="image" style="background-image: url('./images/01.png');"></div>
-    <div class="heading">
-        <h1>Beginning of Spring</h1>
+    <div class="shell_body">
+     <div class="button">
+         <div class="prev">
+             <i class="material-icons">arrow_back</i> <!-- 左箭头 -->
+         </div>
+         <div class="next">
+             <i class="material-icons">arrow_forward</i> <!-- 右箭头 -->
+         </div>
+     </div>
+        <div class="shell_slider">
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>立春</h1>
+                        <span>The Beginning of Spring</span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>立夏</h1>
+                        <span>The Beginning of Summer</span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>立秋</h1>
+                        <span>The Beginning of Autumn</span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>立冬</h1>
+                        <span>The Beginning of Winter </span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>小满</h1>
+                        <span>Grain Buds</span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>雨水</h1>
+                        <span>Rain Water</span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>芒种</h1>
+                        <span>Grain in Ear</span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>夏至</h1>
+                        <span>Summer Solstice</span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>惊蛰</h1>
+                        <span>Awakening of Insects </span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>白露</h1>
+                        <span>White Dew</span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="text">
-        <h1>春风飘然至，花红柳绿浓；立春节气到，祝您心情好；春日需勤奋，事业腾飞高。</h1>
-    </div>
-    <div class="image" style="background-image: url('./images/02.png');"></div>
-    <div class="heading">
-        <h1>Beginning of Summer</h1>
-    </div>
-    <div class="text">
-        <h1>大地苍翠绿意浓浓，雷雨酣畅来去从容，骄阳如火情深义重，夏风如友温情相拥。</h1>
-    </div>
-    <div class="image" style="background-image: url('./images/03.png');"></div>
-    <div class="heading">
-        <h1>Beginning of Autumn</h1>
-    </div>
-    <div class="text">
-        <h1>立秋之日，阳光温柔，微风不燥，一切恰到好处，宛如一幅精致的水墨画。</h1>
-    </div>
-    <div class="image" style="background-image: url('./images/04.png');"></div>
-    <div class="heading">
-        <h1>Beginning of Winter</h1>
-    </div>
-    <div class="text">
-        <h1>季节悄悄更替，立冬翩翩而至，哪怕人生如戏，也要在这一刻中送出最真的问候，拂去寒风的凉意。</h1>
-    </div>
-
 </div>
-
+</div>
 <div id="content-card">
     <div class="card">
         <div class="card-body">
@@ -481,6 +780,104 @@
     }
 
     animate();
+
+    // 获取所有的item元素
+    var items = document.getElementsByClassName('item');
+    // 循环遍历每个item
+    for (var i = 0; i < items.length; i++) {
+        // 获取当前item
+        var item = items[i];
+        var frame = item.getElementsByClassName('frame')[0];
+        var frontBox = frame.getElementsByClassName('front')[0];
+        var leftBox = frame.getElementsByClassName('left')[0];
+        var rightBox = frame.getElementsByClassName('right')[0];
+        // 设置背景图片
+        frontBox.style.backgroundImage = 'url(./images/' + (i + 1).toString().padStart(2, '0') + '.png)';
+        leftBox.style.backgroundImage = 'url(./images/' + (i + 1).toString().padStart(2, '0') + '.png)';
+        rightBox.style.backgroundImage = 'url(./images/' + (i + 1).toString().padStart(2, '0') + '.png)';
+    }
+    (function () {
+        "use strict";
+        var shell = document.getElementsByClassName('shell')[0];
+        var slider = shell.getElementsByClassName('shell_slider')[0];
+        var items = shell.getElementsByClassName('item');
+        var prevBtn = shell.getElementsByClassName('prev')[0];
+        var nextBtn = shell.getElementsByClassName('next')[0];
+        // 定义变量
+        var width, height, totalWidth, margin = 20,
+            currIndex = 0,
+            interval, intervalTime = 3000;
+        function init() {
+            // 初始化函数
+            resize();
+            move(Math.floor(items.length / 2));
+            bindEvents();
+            timer();
+        }
+        function resize() {
+            // 窗口大小变化时调整大小
+            width = Math.max(window.innerWidth * .20, 275);
+            height = window.innerHeight * .5;
+            totalWidth = width * items.length;
+            // 设置slider宽度
+            slider.style.width = totalWidth + "px";
+            // 设置每个item的宽度和高度
+            for (var i = 0; i < items.length; i++) {
+                let item = items[i];
+                item.style.width = (width - (margin * 2)) + "px";
+                item.style.height = height + "px";
+            }
+        }
+        function bindEvents() {
+            // 窗口大小变化时调整大小
+            window.onresize = resize;
+            // 点击prev按钮切换item
+            prevBtn.addEventListener('click', () => { prev(); });
+            nextBtn.addEventListener('click', () => { next(); });
+        }
+        init();
+        function move(index) {
+            // 移动shell到指定的item
+            if (index < 1) index = items.length;
+            if (index > items.length) index = 1;
+            currIndex = index;
+            // 遍历所有item
+            for (var i = 0; i < items.length; i++) {
+                let item = items[i],
+                    box = item.getElementsByClassName('frame')[0];
+                if (i == (index - 1)) {
+                    // 当前item添加active类并设置3D效果
+                    item.classList.add('item--active');
+                    box.style.transform = "perspective(1200px)";
+                } else {
+                    // 其他item移除active类并设置3D效果
+                    item.classList.remove('item--active');
+                    box.style.transform = "perspective(1200px) rotateY(" + (i < (index - 1) ? 40 : -40) + "deg)";
+                }
+            }
+            // 移动slider
+            slider.style.transform = "translate3d(" + ((index * -width) + (width / 2) + window.innerWidth / 2) + "px, 0, 0)";
+            // 设置body背景图片
+            var frontBox = items[index - 1].getElementsByClassName('front')[0];
+            document.body.style.backgroundImage = frontBox.style.backgroundImage;
+        }
+        function timer() {
+            // 定时器，自动切换shell
+            clearInterval(interval);
+            interval = setInterval(() => {
+                move(++currIndex);
+            }, intervalTime);
+        }
+        // 切换item
+        function prev() {
+            move(--currIndex);
+            timer();
+        }
+        function next() {
+            move(++currIndex);
+            timer();
+        }
+    })();
 
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
